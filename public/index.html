@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Gun.js Example</title>
+  <script src="https://cdn.jsdelivr.net/npm/gun/gun.js"></script>
+</head>
+<body>
+  <h1>Gun.js Example</h1>
+  <button onclick="updateData()">Update Data</button>
+  <script>
+    const gun = Gun(['http://localhost:3001/gun', 'http://localhost:3002/gun']);
+
+    gun.get('data').on(data => {
+      console.log('Client received update:', data);
+    });
+
+    function updateData() {
+      gun.get('data').put({ field: 'updated value' });
+    }
+  </script>
+</body>
+</html>
